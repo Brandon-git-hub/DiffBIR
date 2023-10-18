@@ -211,6 +211,20 @@ def put_text(pil_img_arr, text):
     cv2.putText(cv_img, text, (10, 35), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
     return cv_img[..., ::-1].copy()
 
+def CenterCrop(image, resolution):
+    #image = Image.open('1.png').convert("RGB")
+    
+    # resolution = 512
+    w, h = image.size
+    left = (w-resolution)/2
+    top = (h-resolution)/2
+    right = left + resolution
+    bottom = top + resolution
+    im = image.crop((left, top, right, bottom))
+    #im.save("test.png","png")
+
+    return im
+
 
 def auto_resize(img: Image.Image, size: int) -> Image.Image:
     short_edge = min(img.size)
